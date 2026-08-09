@@ -1,0 +1,640 @@
+/* Reseta o box-sizing para evitar que bordas e paddings aumentem o tamanho dos elementos */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; 
+}
+
+/* --- Barra de Navegação com Menu Hambúrguer --- */
+.navbar {
+    background-color: #333;
+    display: flex;
+    justify-content: space-between; /* Casa na esquerda, Hambúrguer na direita */
+    align-items: center;
+    position: relative;
+    padding: 0 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 50px;
+}
+
+.navbar a {
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+.container {
+    max-width: 600px;
+    width: 95%; 
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+h2 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+/* --- Container do input de valor e botões redondos --- */
+.input-valor-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Base para os botões redondos (Página 1 e Página 2) */
+.btn-tipo, .btn-tabela {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -webkit-tap-highlight-color: transparent; /* Tira piscar azul no celular */
+}
+
+/* Remove a borda azul feia ao clicar */
+.btn-tipo:focus, .btn-tipo:active, 
+.btn-tabela:focus, .btn-tabela:active {
+    outline: none;
+}
+
+.btn-tipo:active, .btn-tabela:active {
+    transform: scale(0.9);
+}
+
+/* Cores Alternáveis - PÁGINA 1 */
+.saida { background-color: #dc3545; }
+.entrada { background-color: #28a745; }
+.texto-vermelho { color: #dc3545 !important; font-weight: bold; }
+.texto-verde { color: #28a745 !important; font-weight: bold; }
+
+/* Cores Alternáveis - PÁGINA 2 */
+.btn-tabela {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+.tabela1 { background-color: #007bff; }
+.tabela2 { background-color: #6f42c1; }
+.texto-azul { color: #007bff !important; font-weight: bold; }
+.texto-roxo { color: #6f42c1 !important; font-weight: bold; }
+
+/* --- Tabela de Resumo (Saldo, Junto, Acréscimo) ajustada para não quebrar a tela --- */
+.resumo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.resumo-box {
+    flex: 1;
+    padding: 0 5px;
+    min-width: 0; /* Impede que o bloco invada o espaço do vizinho */
+}
+
+.border-sides {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.resumo-box h4 {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resumo-box p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    word-break: break-all;
+}
+
+/* Botão de Registro principal */
+button[id^="btnRegistrar"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+button[id^="btnRegistrar"]:hover {
+    background-color: #218838;
+}
+
+/* --- Tabela de Registros --- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+    min-width: 400px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap; 
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.input-editar-data {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    width: 130px; 
+}
+
+/* Botões de Ação na Tabela */
+.acoes-container {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-editar, .btn-apagar {
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    transition: background-color 0.2s;
+}
+
+.btn-editar { background-color: #ffc107; color: #212529; }
+.btn-editar:hover { background-color: #e0a800; }
+.btn-apagar { background-color: #dc3545; }
+.btn-apagar:hover { background-color: #bd2130; }
+
+/* --- ESTILOS DA PÁGINA 3 (VERIFICAÇÃO) --- */
+/* --- CORREÇÃO PÁGINA 3 (ARRASTAR PRO LADO) --- */
+.lista-container {
+    overflow-x: hidden; /* Evita que a página toda arraste */
+}
+
+.linha-verificacao {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    gap: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    
+    /* Permite arrastar para o lado */
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* Suave no celular */
+}
+
+/* Impede que os botões e textos encolham e fiquem espremidos */
+.info-verificacao {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px; /* Tamanho mínimo para o texto */
+    flex-shrink: 0; 
+}
+
+
+.falta-texto { color: #dc3545; font-size: 13px; margin-bottom: 4px; }
+.desc-texto { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 4px; }
+.valor-texto { font-size: 13px; color: #555; }
+.data-paga-texto { color: #888; font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+
+/* Linha Desativada/Paga */
+.linha-cinza {
+    background-color: #f8f9fa;
+    border-color: #eee;
+}
+.linha-cinza .desc-texto, 
+.linha-cinza .valor-texto {
+    color: #adb5bd !important;
+}
+
+/* Botões da Página 3 */
+.btn-pagar-acao {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.btn-pagar-acao:active { transform: scale(0.95); }
+
+.btn-pagar-oculto {
+    display: none;
+}
+
+.botoes-finais {
+    display: flex;
+    flex-direction: row; /* Coloca os botões finais lado a lado para o arrasto */
+    gap: 5px;
+}
+
+.btn-modo {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-pagar-acao, .checkbox-container, .botoes-finais {
+    flex-shrink: 0; /* Impede os botões de amassar */
+}
+
+/* --- NOVOS ESTILOS PÁGINA 3 --- */
+
+/* Barra do Topo */
+.controles-topo {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.btn-topo {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-topo.azul { background-color: #007bff; }
+.btn-topo.vermelho { background-color: #dc3545; }
+.btn-topo.cinza { background-color: #6c757d; }
+
+/* Estilização da Checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5px;
+}
+
+.checkbox-gradual {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #ffc107; /* Cor laranja quando marcado */
+}
+
+/* Ajustes dos botões da linha */
+.btn-desfazer {
+    background-color: #6c757d;
+    color: white;
+}
+.btn-acao {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Imagem de casa (Link início) */
+.link-casa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    height: 32px; /* Força altura fixa correspondente ao ícone */
+}
+
+.link-casa:focus,
+.link-casa:active {
+    outline: none;
+    background: transparent;
+}
+
+.link-casa svg {
+    display: block; /* Remove o espaço em branco invisível abaixo do SVG */
+}
+
+.link-casa:hover {
+    transform: scale(1.15); 
+}
+
+/* Botão do Menu Hambúrguer */
+.btn-menu {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-left: auto; /* IMPORTANTE: Mantém os 3 traços travados na extrema direita sempre */
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.btn-menu:focus,
+.btn-menu:active {
+    outline: none;
+}
+
+/* Estilos e Animação das linhas do Hambúrguer -> X */
+.btn-menu svg line {
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* Estado Ativo: Anima para transformar os traços em X */
+.btn-menu.ativo svg .linha-topo {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.btn-menu.ativo svg .linha-meio {
+    opacity: 0;
+}
+
+.btn-menu.ativo svg .linha-baixo {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Menu Flutuante que abre ao clicar */
+.menu-dropdown {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    top: 100%; /* Fica logo abaixo da barra */
+    right: 15px; /* Alinhado à direita */
+    background-color: #333;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    min-width: 160px;
+    
+    /* --- AJUSTE DE SCROLL --- */
+    max-height: 190px; /* Define a altura máxima da janela do menu */
+    overflow-y: auto;  /* Ativa o scroll vertical apenas se o conteúdo passar do limite */
+    
+    flex-direction: column;
+    z-index: 1000;
+}
+
+/* Deixa a barra de rolagem do menu mais discreta e bonita */
+.menu-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.menu-dropdown::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+.menu-dropdown::-webkit-scrollbar-track {
+    background-color: #222;
+}
+
+/* Quando o JS ativa o menu */
+.menu-dropdown.ativo {
+    display: flex;
+}
+
+/* Estilos dos links dentro do menu dropdown */
+.menu-dropdown a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background-color 0.2s;
+    text-align: left;
+}
+
+.menu-dropdown a:hover {
+    background-color: #555;
+}
+
+/* --- ESTILOS DA PÁGINA 4 (CHAT DE IA) --- */
+
+.container-chat {
+    max-width: 700px;
+    width: 95%;
+    height: calc(100vh - 90px); /* Ocupa a altura quase total da tela */
+    margin: 20px auto;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #f8f9fa;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.seletor-ia-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.seletor-ia-container label {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.select-ia {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background: #fff;
+}
+
+.input-api-key {
+    font-size: 13px;
+    padding: 8px;
+}
+
+/* Aviso de Internet Off */
+.aviso-offline {
+    background-color: #dc3545;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Caixa de Mensagens */
+.chat-box {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fafafa;
+}
+
+.mensagem {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.mensagem.usuario {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+.mensagem.ia {
+    align-self: flex-start;
+    background-color: #e9ecef;
+    color: #212529;
+    border-bottom-left-radius: 2px;
+}
+
+.mensagem.sistema {
+    align-self: center;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Área de Entrada de Texto */
+.chat-input-area {
+    display: flex;
+    padding: 12px;
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+    gap: 10px;
+}
+
+.chat-input-area input {
+    flex: 1;
+}
+
+.chat-input-area button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chat-input-area button:hover {
+    background-color: #218838;
+}
+
+.chat-input-area button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}

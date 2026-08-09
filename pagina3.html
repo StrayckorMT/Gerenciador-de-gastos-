@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 3 - Verificação</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#28a745">
+</head>
+<body>
+
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <!-- Casa no lado esquerdo -->
+        <a href="index.html" class="link-casa" title="Voltar ao Início">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" width="32" height="32">
+                <path d="M5 11 L12 5 L19 11 V19 A1 1 0 0 1 18 20 H6 A1 1 0 0 1 5 19 Z" />
+            </svg>
+        </a>
+        
+        <!-- Botão Hambúrguer no lado direito com identificadores de animação -->
+        <button id="btnMenu" class="btn-menu" aria-label="Abrir Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+                <line class="linha-topo" x1="3" y1="6" x2="21" y2="6"></line>
+                <line class="linha-meio" x1="3" y1="12" x2="21" y2="12"></line>
+                <line class="linha-baixo" x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        
+        <!-- Menu suspenso -->
+        <div id="menuDropdown" class="menu-dropdown">
+            <a href="pagina2.html">Previsão</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Verificação de Previsões</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">
+            Controle os pagamentos. O que for pago ficará cinza.
+        </p>
+
+        <!-- NOVO: Barra de Controles do Topo -->
+        <div class="controles-topo">
+            <button id="btnAtivarGradual" class="btn-topo azul">🔄 Selecionar Graduais</button>
+            <button id="btnResetar" class="btn-topo vermelho">⚠️ Resetar Tudo</button>
+        </div>
+
+        <!-- Container da Lista -->
+        <div id="listaVerificacao" class="lista-container"></div>
+    </div>
+
+    <script src="pagina3.js"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
+</body>
+</html>

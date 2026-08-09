@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Gastos</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Link para o Manifest (Faz virar app) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#28a745">
+</head>
+<body>
+
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <!-- Botão Hambúrguer no lado direito com identificadores de animação -->
+        <button id="btnMenu" class="btn-menu" aria-label="Abrir Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+                <line class="linha-topo" x1="3" y1="6" x2="21" y2="6"></line>
+                <line class="linha-meio" x1="3" y1="12" x2="21" y2="12"></line>
+                <line class="linha-baixo" x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        
+        <!-- Menu suspenso -->
+        <div id="menuDropdown" class="menu-dropdown">
+            <a href="pagina2.html">Previsão de Gastos</a>
+            <a href="pagina3.html">Controle</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Gerenciador de Gastos</h2>
+
+        <!-- Entradas de dados -->
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" placeholder="Ex: Mercado, Salário...">
+        </div>
+
+        <div class="form-group">
+            <label>Valor (R$):</label>
+            <div class="input-valor-container">
+                <input type="number" id="valor" step="0.01" placeholder="0.00" class="texto-vermelho">
+                <!-- Botão redondo para alternar o tipo (Entrada/Saída) -->
+                <button id="btnTipoValor" class="btn-tipo saida" title="Alternar Entrada/Saída"></button>
+            </div>
+        </div>
+
+        <button id="btnRegistrar">Registrar Valor</button>
+
+        <!-- Tabela de Resumo (Saldo | Junto | Acréscimo) -->
+        <div class="resumo-container">
+            <div class="resumo-box">
+                <h4>Saldo</h4>
+                <p id="saldo1">R$ 0.00</p>
+            </div>
+            <div class="resumo-box border-sides">
+                <h4>Junto</h4>
+                <p id="saldo2">R$ 0.00</p>
+            </div>
+            <div class="resumo-box">
+                <h4>Acréscimo</h4>
+                <p id="saldo3">R$ 0.00</p>
+            </div>
+        </div>
+
+        <!-- Tabela onde os valores serão exibidos -->
+        <div class="table-responsive">
+            <table id="tabelaGastos">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th style="text-align: center;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Os gastos vão aparecer aqui dentro -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Script para registrar o Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .catch(error => console.log('Falha ao registrar o SW:', error));
+            });
+        }
+    </script>
+</body>
+</html>

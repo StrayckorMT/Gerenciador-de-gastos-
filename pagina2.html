@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 2 - Resumo e Tabelas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#28a745">
+</head>
+<body>
+
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <!-- Casa no lado esquerdo -->
+        <a href="index.html" class="link-casa" title="Voltar ao Início">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" width="32" height="32">
+            <path d="M5 11 L12 5 L19 11 V19 A1 1 0 0 1 18 20 H6 A1 1 0 0 1 5 19 Z"/>
+          </svg>
+        </a>
+
+        <!-- Botão Hambúrguer no lado direito com identificadores de animação -->
+        <button id="btnMenu" class="btn-menu" aria-label="Abrir Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+                <line class="linha-topo" x1="3" y1="6" x2="21" y2="6"></line>
+                <line class="linha-meio" x1="3" y1="12" x2="21" y2="12"></line>
+                <line class="linha-baixo" x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Menu suspenso -->
+        <div id="menuDropdown" class="menu-dropdown">
+            <a href="pagina3.html">Controle</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Painel Secundário</h2>
+
+        <!-- Tabela de Resumo (Saldo | Junto | Acréscimo) -->
+        <div class="resumo-container">
+            <div class="resumo-box">
+                <h4>Saldo</h4>
+                <p id="saldo1">R$ 0.00</p>
+            </div>
+            <div class="resumo-box border-sides">
+                <h4>Junto</h4>
+                <p id="saldo2">R$ 0.00</p>
+            </div>
+            <div class="resumo-box">
+                <h4>Acréscimo</h4>
+                <p id="saldo3">R$ 0.00</p>
+            </div>
+        </div>
+
+        <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;">
+
+        <!-- Painel de Entradas -->
+        <div class="form-group">
+            <label for="descricao2">Descrição:</label>
+            <input type="text" id="descricao2" placeholder="Ex: Investimento, Meta...">
+        </div>
+
+        <div class="form-group">
+            <label>Valor (R$):</label>
+            <div class="input-valor-container">
+                <input type="number" id="valor2" step="0.01" placeholder="0.00" class="texto-azul">
+                <!-- Botão redondo alternando entre 1 e 2 -->
+                <button id="btnTipoTabela" class="btn-tabela tabela1" title="Alternar Tabela">1</button>
+            </div>
+        </div>
+
+        <button id="btnRegistrar2">Registrar na Tabela</button>
+
+        <!-- Tabela 1 -->
+        <h3 style="margin-top: 35px; text-align: center; color: #333;">Tabela 1</h3>
+        <div class="table-responsive">
+            <table id="tabela1HTML">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th style="text-align: center;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Tabela 2 -->
+        <h3 style="margin-top: 35px; text-align: center; color: #333;">Tabela 2</h3>
+        <div class="table-responsive">
+            <table id="tabela2HTML">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th style="text-align: center;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="pagina2.js"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .catch(error => console.log('Falha ao registrar o SW:', error));
+            });
+        }
+    </script>
+</body>
+</html>
