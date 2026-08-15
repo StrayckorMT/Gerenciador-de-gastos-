@@ -5,13 +5,13 @@ import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/fireb
 
 // ⚠️ SUBSTITUA PELAS CHAVES DO SEU PROJETO FIREBASE AQUI
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJETO",
-  storageBucket: "SEU_PROJETO.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SEU_APP_ID"
-};
+    apiKey: "AIzaSyAT_1e1NdLLqWbdtiwlZ-sPh0oXyNHnzNA",
+    authDomain: "gerenciador-de-gastos-7e7f8.firebaseapp.com",
+    projectId: "gerenciador-de-gastos-7e7f8",
+    storageBucket: "gerenciador-de-gastos-7e7f8.firebasestorage.app",
+    messagingSenderId: "436695743184",
+    appId: "1:436695743184:web:1d27a88d07756f4c4f3cd5"
+  };
 
 // Inicialização
 const app = initializeApp(firebaseConfig);
