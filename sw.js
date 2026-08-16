@@ -1,6 +1,6 @@
 // ATENÇÃO: Sempre que você mudar qualquer coisa no HTML, CSS ou JS, 
 // você DEVE mudar esse número (ex: v3, v4, v5...) para o app atualizar.
-const CACHE_NAME = 'gastos-app-1'; 
+const CACHE_NAME = 'gastos-app-v1'; 
 
 const urlsToCache = [
   './',
