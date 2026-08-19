@@ -1,3 +1,25 @@
+// --- Lógica do Menu Hambúrguer e Animação do X ---
+document.addEventListener('DOMContentLoaded', () => {
+    const btnMenu = document.getElementById('btnMenu');
+    const menuDropdown = document.getElementById('menuDropdown');
+
+    if (btnMenu && menuDropdown) {
+        // Abre/fecha menu e anima hambúrguer para X
+        btnMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+            btnMenu.classList.toggle('ativo');
+            menuDropdown.classList.toggle('ativo');
+        });
+
+        // Fecha o menu e reseta o ícone ao clicar fora
+        document.addEventListener('click', () => {
+            if (menuDropdown.classList.contains('ativo')) {
+                btnMenu.classList.remove('ativo');
+                menuDropdown.classList.remove('ativo');
+            }
+        });
+    }
+    
 document.addEventListener('DOMContentLoaded', () => {
     const inputDinheiro = document.getElementById('dinheiroInicial');
     const btnSalvar = document.getElementById('btnRegistrarConfig');
