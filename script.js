@@ -66,7 +66,11 @@ function renderizarTabela() {
     const tabela = document.getElementById('tabelaGastos').getElementsByTagName('tbody')[0];
     tabela.innerHTML = ''; 
 
-    let saldoTotal = 0; // Variável para calcular a matemática
+        // Puxa o dinheiro inicial salvo nas configurações (se não tiver nada, é 0)
+    let dinheiroInicial = parseFloat(localStorage.getItem('dinheiroInicial')) || 0;
+    
+    // Inicia a matemática baseada no dinheiro inicial em vez de zero
+    let saldoTotal = dinheiroInicial; 
 
     gastos.forEach((gasto, index) => {
         // Cálculo do saldo base
