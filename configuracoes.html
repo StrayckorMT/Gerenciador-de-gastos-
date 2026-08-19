@@ -54,10 +54,18 @@
             <input type="number" id="dinheiroInicial" step="0.01" placeholder="Ex: 200.00">
         </div>
 
-        <!-- O ID começa com "btnRegistrar" para herdar o seu CSS já existente -->
-        <button id="btnRegistrarConfig" class="btn-config">
-            Salvar Configurações
-        </button>
+        <!-- Botões Lado a Lado -->
+        <div class="botoes-config-container">
+            <button id="btnResetarConfig" class="btn-config-secundario">Resetar</button>
+            
+            <!-- O botão já começa com o atributo "disabled" (desativado) -->
+            <button id="btnRegistrarConfig" class="btn-config" disabled>Salvar</button>
+        </div>
+    </div>
+
+    <!-- Notificação Moderna (Toast) escondida -->
+    <div id="toastNotificacao" class="toast-moderno">
+        <span class="icone-check">✓</span> <span id="toastMensagem">Configurações salvas!</span>
     </div>
 
     <!-- Puxando o arquivo JS externo -->
