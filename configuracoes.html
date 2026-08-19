@@ -13,7 +13,27 @@
 
     <!-- Barra de Navegação -->
     <nav class="navbar">
-        <a href="index.html" class="link-voltar">🏠 Início</a>
+        <!-- Botão Hambúrguer no lado direito com identificadores de animação -->
+        <button id="btnMenu" class="btn-menu" aria-label="Abrir Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+                <line class="linha-topo" x1="3" y1="6" x2="21" y2="6"></line>
+                <line class="linha-meio" x1="3" y1="12" x2="21" y2="12"></line>
+                <line class="linha-baixo" x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        
+       <!-- Menu suspenso -->
+       <div id="menuDropdown" class="menu-dropdown">
+            <a href="pagina2.html">Previsão de Gastos</a>
+            <a href="pagina3.html">Controle</a>
+            
+            <!-- Separador Moderno -->
+            <div class="menu-separador"></div>
+            
+            <a href="configuracoes.html">Configurações</a>
+            <a href="#" id="btn-login-sync">Sincronizar com Google</a>
+        </div>
+
     </nav>
 
     <div class="container">
