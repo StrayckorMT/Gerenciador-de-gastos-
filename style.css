@@ -638,3 +638,12 @@ tr:nth-child(even) {
     background-color: #6c757d;
     cursor: not-allowed;
 }
+
+/* --- Separador do Menu --- */
+.menu-separador {
+    height: 1px;
+    background: linear-gradient(to right, #333, #888, #333);
+    margin: 4px 10px;
+    opacity: 0.8;
+    }
+    
