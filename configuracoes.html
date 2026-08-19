@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Registro de Gastos</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#28a745">
+</head>
+<body>
+
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold; padding: 0;">🏠 Início</a>
+    </nav>
+
+    <div class="container">
+        <h2>Configurações</h2>
+
+        <div class="form-group">
+            <label for="dinheiroInicial">Dinheiro Inicial (R$):</label>
+            <p style="font-size: 13px; color: #666; margin-top: -3px; margin-bottom: 10px;">
+                Adicione um valor base para a sua conta. Este valor será somado ao saldo total sem aparecer como um registro na tabela.
+            </p>
+            <input type="number" id="dinheiroInicial" step="0.01" placeholder="Ex: 500.00">
+        </div>
+
+        <button id="btnSalvarConfig" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px;">
+            Salvar Configurações
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputDinheiro = document.getElementById('dinheiroInicial');
+            const btnSalvar = document.getElementById('btnSalvarConfig');
+
+            // Quando a página carrega, verifica se já existe um valor salvo
+            const valorSalvo = localStorage.getItem('dinheiroInicial');
+            if (valorSalvo) {
+                inputDinheiro.value = parseFloat(valorSalvo).toFixed(2);
+            }
+
+            // Ação de salvar ao clicar no botão
+            btnSalvar.addEventListener('click', () => {
+                const novoValor = parseFloat(inputDinheiro.value) || 0;
+                localStorage.setItem('dinheiroInicial', novoValor);
+                
+                // Dá um feedback visual rápido
+                const textoOriginal = btnSalvar.textContent;
+                btnSalvar.textContent = "✔ Salvo com sucesso!";
+                btnSalvar.style.backgroundColor = "#218838";
+                
+                setTimeout(() => {
+                    btnSalvar.textContent = "Salvar Configurações";
+                    btnSalvar.style.backgroundColor = "#28a745";
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+  </html>
+  
