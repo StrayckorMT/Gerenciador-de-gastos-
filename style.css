@@ -647,3 +647,21 @@ tr:nth-child(even) {
     opacity: 0.8;
     }
     
+/* --- ESTILOS DA PÁGINA DE CONFIGURAÇÕES --- */
+.link-voltar {
+    font-weight: bold;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.texto-dica {
+    font-size: 13px;
+    color: #666;
+    margin-top: -3px;
+    margin-bottom: 10px;
+}
+
+.btn-config {
+    margin-top: 10px;
+    }
