@@ -1,48 +1,81 @@
-// --- Lógica do Menu Hambúrguer e Animação do X ---
-document.addEventListener('DOMContentLoaded', () => {
-    const btnMenu = document.getElementById('btnMenu');
-    const menuDropdown = document.getElementById('menuDropdown');
-
-    if (btnMenu && menuDropdown) {
-        // Abre/fecha menu e anima hambúrguer para X
-        btnMenu.addEventListener('click', (e) => {
-            e.stopPropagation();
-            btnMenu.classList.toggle('ativo');
-            menuDropdown.classList.toggle('ativo');
-        });
-
-        // Fecha o menu e reseta o ícone ao clicar fora
-        document.addEventListener('click', () => {
-            if (menuDropdown.classList.contains('ativo')) {
-                btnMenu.classList.remove('ativo');
-                menuDropdown.classList.remove('ativo');
-            }
-        });
-    }
-    
 document.addEventListener('DOMContentLoaded', () => {
     const inputDinheiro = document.getElementById('dinheiroInicial');
     const btnSalvar = document.getElementById('btnRegistrarConfig');
+    const btnResetar = document.getElementById('btnResetarConfig');
+    
+    const toast = document.getElementById('toastNotificacao');
+    const toastMensagem = document.getElementById('toastMensagem');
+    let toastTimeout; // Variável para controlar o tempo da notificação
 
-    // Quando a página carrega, verifica se já existe um valor salvo
-    const valorSalvo = localStorage.getItem('dinheiroInicial');
-    if (valorSalvo) {
-        inputDinheiro.value = parseFloat(valorSalvo).toFixed(2);
+    // 1. Puxar valor original ao carregar
+    let valorSalvoOriginal = localStorage.getItem('dinheiroInicial') || '';
+
+    if (valorSalvoOriginal) {
+        inputDinheiro.value = parseFloat(valorSalvoOriginal).toFixed(2);
     }
 
-    // Ação de salvar ao clicar no botão
+    // 2. Função que liga/desliga o botão conforme você digita
+    function checarMudancas() {
+        let valorAtual = inputDinheiro.value;
+        
+        // Converte os dois para número para comparar direitinho (Ex: "500" vira igual a "500.00")
+        let numAtual = valorAtual === '' ? '' : parseFloat(valorAtual);
+        let numSalvo = valorSalvoOriginal === '' ? '' : parseFloat(valorSalvoOriginal);
+
+        // Se os valores forem iguais, o botão fica desativado
+        if (numAtual === numSalvo) {
+            btnSalvar.disabled = true;
+        } else {
+            btnSalvar.disabled = false;
+        }
+    }
+
+    // Fica de olho em tudo que é digitado no input
+    inputDinheiro.addEventListener('input', checarMudancas);
+
+    // 3. Função que chama a animação da notificação
+    function mostrarNotificacao(mensagem) {
+        toastMensagem.textContent = mensagem;
+        toast.classList.add('mostrar');
+
+        // Se já tiver uma notificação sumindo, cancela pra mostrar a nova
+        clearTimeout(toastTimeout);
+        
+        // Esconde suavemente após 3 segundos
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('mostrar');
+        }, 3000);
+    }
+
+    // 4. Ação do Botão Salvar
     btnSalvar.addEventListener('click', () => {
         const novoValor = parseFloat(inputDinheiro.value) || 0;
+        
+        // Salva no banco do navegador
         localStorage.setItem('dinheiroInicial', novoValor);
         
-        // Dá um feedback visual rápido
-        btnSalvar.textContent = "✔ Salvo com sucesso!";
-        btnSalvar.style.backgroundColor = "#218838"; // Cor verde mais escura
+        // Atualiza a memória para o novo valor
+        valorSalvoOriginal = inputDinheiro.value; 
         
-        setTimeout(() => {
-            btnSalvar.textContent = "Salvar Configurações";
-            btnSalvar.style.backgroundColor = ""; // Remove a cor fixa para voltar a usar o CSS padrão
-        }, 2000);
+        // O botão fez o trabalho, então desativa ele de novo
+        btnSalvar.disabled = true;
+
+        mostrarNotificacao("Configurações salvas!");
+    });
+
+    // 5. Ação do Botão Resetar
+    btnResetar.addEventListener('click', () => {
+        // Salva como zero 
+        localStorage.setItem('dinheiroInicial', 0);
+        
+        // Limpa o campo da tela
+        inputDinheiro.value = '';
+        valorSalvoOriginal = '';
+
+        // Botão salvar desativado pois já está salvo como zero
+        btnSalvar.disabled = true;
+
+        mostrarNotificacao("Saldo zerado!");
     });
 });
-                               
+            
