@@ -662,6 +662,81 @@ tr:nth-child(even) {
     margin-bottom: 10px;
 }
 
+/* Container para alinhar os botões */
+.botoes-config-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Botão Salvar - flex: 2 faz ele ficar mais largo */
 .btn-config {
-    margin-top: 10px;
+    flex: 2; 
+    transition: all 0.3s ease;
+}
+
+/* O Segredo do botão cinza e inativado! */
+#btnRegistrarConfig:disabled {
+    background-color: #e9ecef !important;
+    color: #adb5bd !important;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none; /* Tira o efeito de clique */
+}
+
+/* Botão Resetar - flex: 1 faz ele ficar menor */
+.btn-config-secundario {
+    flex: 1;
+    padding: 12px;
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-config-secundario:hover {
+    background-color: #e2e6ea;
+}
+.btn-config-secundario:active {
+    transform: scale(0.95);
+}
+
+/* --- Design da Notificação Moderna (Toast) --- */
+.toast-moderno {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px); /* Começa 20px mais baixo */
+    background: rgba(33, 33, 33, 0.95); /* Preto meio transparente */
+    backdrop-filter: blur(5px); /* Efeito de desfoque estilo Apple */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px; /* Formato de "pílula" */
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease, visibility 0.4s;
+    z-index: 10000;
+}
+
+.toast-moderno.mostrar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Desliza pra cima suavemente */
+}
+
+.icone-check {
+    color: #28a745; /* Visto verde moderno */
+    font-weight: bold;
+    font-size: 16px;
     }
+    
